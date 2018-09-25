@@ -48,7 +48,8 @@ class ViewController: UIViewController {
         let xFromCenter = card.center.x - view.center.x
         card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
         
-        card.transform = CGAffineTransform(rotationAngle: xFromCenter/divisor)
+        let scale = min(120/abs(xFromCenter), 1)
+        card.transform = CGAffineTransform(rotationAngle: xFromCenter/divisor).scaledBy(x: scale, y: scale)
         
         if xFromCenter > 0 { // Right
             acceptImageView.image = UIImage(named: "accept")
