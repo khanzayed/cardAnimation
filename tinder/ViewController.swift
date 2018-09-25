@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var acceptImageView: UIImageView!
     
     var divisor : CGFloat!
+    var top : CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class ViewController: UIViewController {
             self.card.center = self.view.center
             self.acceptImageView.alpha = 0
             self.card.alpha = 1
-            self.card.transform = CGAffineTransform.identity
+            self.card.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
         }) { (true) in
             self.acceptImageView.image = nil
         }
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
         let xFromCenter = card.center.x - view.center.x
         card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
         
-        let scale = min(120/abs(xFromCenter), 1)
+        let scale = min(100/abs(xFromCenter), 1)
         card.transform = CGAffineTransform(rotationAngle: xFromCenter/divisor).scaledBy(x: scale, y: scale)
         
         if xFromCenter > 0 { // Right
